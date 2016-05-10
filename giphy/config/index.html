@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Giphy Ornament Config</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="../js/settings.js"></script>
+    <script src="../js/project.js"></script>
+  </head>
+  <body>
+    <style>
+      html {
+        overflow-x: hidden;
+      }
+      body {
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+      }
+      h1 {
+        font-family: sans-serif;
+        font-weight: lighter;
+        font-size: 1.5em;
+        background: #2196F3;
+        margin: 0;
+        color: white;
+        padding: 15px;
+        padding-top: 50px;
+      }
+      h2 {
+        font-family: sans-serif;
+        font-size: 1.5em;
+        font-weight: lighter;
+        margin-left: 15px;
+      }
+      form {
+        margin-left: 15px;
+        margin-right: 15px;
+      }
+      .remove {
+        float: right;
+        margin-right: 15px;
+        padding: 15px;
+        position: relative;
+        top: -15px;
+        border-left: 1px solid #eaeaea;
+      }
+      input {
+        display: block;
+        box-sizing: border-box;
+        padding: 10px;
+        border: 1px solid #eaeaea;
+        font-size: 1em;
+        border-radius: 5px;
+        width: 100%;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+      li {
+        list-style: none;
+        border: 1px solid #eaeaea;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        display: block;
+        margin-left: 15px;
+        margin-right: 15px;
+        font-family: "Roboto", sans-serif;
+        box-shadow: 0px 1px 2px #eaeaea;
+      }
+      li a {
+        display: block;
+        text-decoration: none;
+        width: 100%;
+        height: 100%;
+        padding: 15px;
+        color: #212121;
+      }
+    </style>
+    <h1>Giphy Ornament Config</h1>
+    <h2>Set a new tag</h2>
+    <form>
+      <input type="text" placeholder="Enter a tag...">
+    </form>
+    <h2>Use a previous tag...</h2>
+    <ul></ul>
+  </body>
+</html>
