@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "Butler Black";
+    src: url("/static/fonts/Butler_Black.otf");
+}
+@font-face {
+    font-family: "Butler Bold";
+    src: url("/static/fonts/Butler_Bold.otf");
+}
+@font-face {
+    font-family: "Butler Ultra Light";
+    src: url("/static/fonts/Butler_Ultra_Light.otf");
+}
+* {
+    font-family: "Butler Black", serif;
+}
+a {
+    font-family: "Butler Bold";
+    text-decoration: none;
+    color: #3D3A4B;
+    transition: 150ms all;
+}
+a:hover {
+    color: #0F9F6F;
+}
+body {
+    background-color: #F7F7F7;
+    margin: 0 0 200px;
+}
+h1 {
+    position: relative;
+    top: 5vh;
+    color: black;
+    font-weight: 900;
+    font-size: 5em;
+    text-align: center;
+    letter-spacing: 3px;
+}
+h2 {
+    text-align: center;
+    margin-bottom: 0;
+    margin-top: 80px;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+footer.social {
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 40px;
+}
+hr.small {
+    width: 9%;
+    min-width: 80px;
+    border-bottom: 1px solid black;
+    border-top: 0;
+}
+p.subtitle {
+    font-family: "Butler Ultra Light";
+    color: #3D3A4B;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 40px;
+}
+ul {
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
