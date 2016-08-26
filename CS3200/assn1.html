@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>8Ball</title>
+    </head>
+    <style>
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(50px);
+            }
+            75% {
+                transform: translateX(-50px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        html {
+            background: url(wood.jpg);
+            background-size: cover;
+        }
+        ball-container {
+            display: block;
+            width: 100vw;
+            height: 50vh;
+            position: relative;
+        }
+        ball {
+            position: relative;
+            display: block;
+            width: 50vh;
+            height: 50vh;
+            margin: 0 auto;
+            margin-top: 25vh;
+            border-radius: 50%;
+            background: radial-gradient(circle farthest-corner at 45px 45px , #CCC 0%, #000 95%);
+            box-shadow: 21px 21px 21px rgba(0, 0, 0, 0.5);
+        }
+        ball.shake {
+            animation: shake 250ms infinite linear;
+        }
+        message-container {
+            display: block;
+            background: black;
+            width: 50%;
+            height: 50%;
+            margin: 0 auto;
+            top: 25%;
+            position: absolute;
+            left: 25%;
+            border-radius: 50%;
+        }
+        message {
+            display: block;
+            width: 75%;
+            height: 75%;
+            margin: 0 auto;
+            margin-top: 0;
+            text-align: center;
+            margin-top: 19%;
+            position: relative;
+            color: white;
+            background: url(triangle.svg);
+            transition: 500ms all;
+            transform: none;
+        }
+        message.hidden {
+            transform: rotateX(40deg) rotateY(-90deg) rotateZ(30deg) translateX(-80px) translateY(-50px) translateZ(-10px);
+            opacity: 0;
+        }
+        message span {
+            position: absolute;
+            width: 50%;
+            left: 25%;
+            top: 25%;
+        }
+        button {
+            text-align: center;
+            margin: 0 auto;
+            width: 25%;
+            display: block;
+            position: relative;
+            top: 50px;
+        }
+    </style>
+    <body>
+        <ball-container>
+            <ball id="ball">
+                <message-container>
+                    <message id="message"><span id="message-text">try again soon</span></message>
+                </message-container>
+            </ball>
+        </ball-container>
+        <button id="btn-shake" onclick="shake_ball()" type="button">Shake the 8 Ball</button>
+    </body>
+    <script>
+        function hide_message() {
+            document.getElementById("message").className = "hidden";
+        }
+        function unhide_message() {
+            document.getElementById("message").className = "";
+        }
+        function change_message() {
+            document.getElementById("message-text").innerHTML = "hello";
+        }
+        function shake_ball() {
+          document.getElementById("ball").className = "shake";
+          hide_message();
+          setTimeout(function () {
+            document.getElementById("ball").className = "";
+            change_message();
+            unhide_message();
+          }, 1000);
+        }
+    </script>
+</html>
