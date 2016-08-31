@@ -1,24 +1,24 @@
 var messages = [
-    "It is certain.",
-    "It is decidedly so.",
-    "Without a doubt.",
-    "Yes, definitely.",
-    "You may rely on it.",
-    "As I see it, yes.",
-    "Most likely.",
-    "Outlook good.",
-    "Yes.",
-    "Signs point to yes.",
-    "Reply hazy try again.",
-    "Ask again later.",
-    "Better not tell you now.",
-    "Cannot predict now.",
-    "Concentrate and ask again.",
-    "Don't count on it.",
-    "My reply is no.",
-    "My sources say no.",
-    "Outlook not so good.",
-    "Very doubtful."
+    {message: "It is certain.", color: "green"},
+    {message: "It is decidedly so.", color: "green"},
+    {message: "Without a doubt.", color: "green"},
+    {message: "Yes, definitely.", color: "green"},
+    {message: "You may rely on it.", color: "green"},
+    {message: "As I see it, yes.", color: "green"},
+    {message: "Most likely.", color: "green"},
+    {message: "Outlook good.", color: "green"},
+    {message: "Yes.", color: "green"},
+    {message: "Signs point to yes.", color: "green"},
+    {message: "Reply hazy try again.", color: "blue"},
+    {message: "Ask again later.", color: "blue"},
+    {message: "Better not tell you now.", color: "blue"},
+    {message: "Cannot predict now.", color: "blue"},
+    {message: "Concentrate and ask again.", color: "blue"},
+    {message: "Don't count on it.", color: "red"},
+    {message: "My reply is no.", color: "red"},
+    {message: "My sources say no.", color: "red"},
+    {message: "Outlook not so good.", color: "red"},
+    {message: "Very doubtful.", color: "red"}
 ];
 var ball = document.getElementById("ball");
 
@@ -30,7 +30,8 @@ function unhide_message() {
 }
 function change_message() {
     var i = Math.floor(Math.random() * messages.length);
-    document.getElementById("message-text").innerHTML = messages[i];
+    document.getElementById("message").style.background = "url(triangle-" + messages[i].color + ".svg)";
+    document.getElementById("message-text").innerHTML = messages[i].message;
 }
 function shake_ball() {
   ball.classList.add("shake");
