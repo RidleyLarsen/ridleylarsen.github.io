@@ -1,8 +1,14 @@
 var messages;
 
 function get_messages() {
-  var request = new XMLHTTPRequest("https://ridley.xyz/CS3200/1/messages.json");
-  messages = JSON.parse(request.body);
+  var request = new XMLHttpRequest();
+  request.onload = function (thing, thing2) {
+    console.log(thing, thing2);
+    messages = JSON.parse(request.body);
+    shake_ball();
+  }
+  request.open("GET", "http://ridley.xyz/CS3200/1/messages.json");
+  request.send();
 }
 
 get_messages();
@@ -29,7 +35,7 @@ function shake_ball() {
     unhide_message();
   }, 1000);
 }
-change_message();
+
 if (window.localStorage.getItem("color")) {
     ball.className = window.localStorage.getItem("color");
 }
