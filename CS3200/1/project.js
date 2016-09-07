@@ -2,11 +2,10 @@ var messages;
 
 function get_messages() {
   var request = new XMLHttpRequest();
-  request.onload = function (thing, thing2) {
-    console.log(thing, thing2);
-    messages = JSON.parse(request.body);
+  request.onload = function (success, error) {
+    messages = JSON.parse(success.target.responseText);
     shake_ball();
-  }
+  };
   request.open("GET", "http://www.ridley.xyz/CS3200/1/messages.json");
   request.send();
 }
