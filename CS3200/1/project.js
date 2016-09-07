@@ -7,7 +7,7 @@ function get_messages() {
     messages = JSON.parse(request.body);
     shake_ball();
   }
-  request.open("GET", "http://ridley.xyz/CS3200/1/messages.json");
+  request.open("GET", "http://www.ridley.xyz/CS3200/1/messages.json");
   request.send();
 }
 
