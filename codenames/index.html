@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Codenames</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            .red_cards {
+                padding-left: 10px;
+            }
+            .card {
+                display: block;
+                width: calc(18vw - 6px);
+                height: 13vh;
+                border: 1px solid black;
+                cursor: pointer;
+                z-index: 5;
+            }
+            .ui-draggable-dragging {
+                z-index: 999;
+            }
+            .card.draggable {
+                position: absolute;
+            }
+            .card.red {
+                background: rgba(255, 0, 0, 255);
+            }
+            .card.blue {
+                background: rgba(0, 0, 255, 255);
+            }
+            .card.black {
+                background: rgba(0, 0, 0, 255);
+            }
+            .card.neutral {
+                background: rgba(120, 120, 0, 255);
+            }
+            .menu {
+                padding-left: calc(5vw + 6px);
+                height: 25vh;
+                width: 100vw;
+            }
+            .red_cards {
+                padding-left: 0px;
+            }
+            .blue_cards {
+                padding-left: calc(18vw - 2px);
+            }
+            .neutral_cards {
+                padding-left: calc(2 * calc(18vw - 2px));
+            }
+            .black_cards {
+                padding-left: calc(3 * calc(18vw - 2px));
+            }
+            table {
+                padding-left: 5vw;
+                padding-right: 5vw;
+                padding-top: 5vh;
+                padding-bottom: 5vh;
+                width: 100vw;
+                height: 75vh;
+                font-size: 1em;
+                text-transform: uppercase;
+                line-height: 5em;
+                text-align: center;
+                font-family: sans-serif;
+                border-spacing: 5px;
+            }
+            td {
+                display: table-cell;
+                width: 18vw;
+                height: 13vh;
+                border: 1px solid black;
+                background: rgba(0, 0, 0, 0.25);
+                color: white;
+            }
+            body {
+                position: relative;
+                background: url(background.jpg);
+                background-size: cover;
+                margin: 0;
+            }
+        </style>
+        <script src="wordlist.js"></script>
+        <script type="text/javascript">
+            var game_words = [];
+            var $uiobj;
+            function apply_draggable () {
+                $('.card.draggable').draggable({
+                    revert: "invalid",
+                    stop: function (event, ui) {
+                        $uiobj = ui;
+                        var min_x = 1000;
+                        var min_y = 1000;
+                        var min_d = 10000;
+                        var $td;
+                        var card_offset = $(this).offset();
+                        card_center_y = $(this).offset().top + ($(this).height() / 2);
+                        card_center_x = $(this).offset().left + ($(this).width() / 2);
+                        $('td').each(function (elt) {
+                            var this_offset = $(this).offset()
+                            this_center_y = this_offset.top + ($(this).height() / 2);
+                            this_center_x = this_offset.left + ($(this).width() / 2);
+                            distance = Math.sqrt(((card_center_y - this_center_y) ** 2) + (card_center_x - this_center_x) ** 2);
+                            y_diff = Math.abs(card_center_y - this_center_y);
+                            x_diff = Math.abs(card_center_x - this_center_x);
+                            if (distance < min_d) {
+                                min_d = distance;
+                                $td = $(this);
+                            }
+                        });
+                        var $that = $(this);
+                        if (min_d < 100) {
+                            var container_class = "";
+                            if ($(this).hasClass('red')) { container_class = ".red_cards" };
+                            if ($(this).hasClass('blue')) { container_class = ".blue_cards" };
+                            if ($(this).hasClass('neutral')) { container_class = ".neutral_cards" };
+                            if ($(this).hasClass('black')) { container_class = ".black_cards" };
+                            $c = $(this).clone();
+                            $c[0].style.top = "";
+                            $c[0].style.left = "";
+                            $(container_class).append($c);
+                            $(this).addClass("on-board");
+                            $('.card.on-board').each(function (elt) {
+                                if ($(this).offset().left == $td.offset().left && $(this).offset().top == $td.offset().top) {
+                                    console.log("card on top of other card");
+                                    $(this).remove();
+                                }
+                            });
+                            $(this).animate({left: $td.offset().left, top: $td.offset().top}, 250)
+                            apply_draggable();
+                        } else {
+                            if ($(this).hasClass("on-board")) {
+                                $(this).remove();
+                            }
+                        }
+                    },
+                });
+            }
+            $(function () {
+                while (game_words.length != 25) {
+                    var word = wordlist[Math.floor(Math.random() * wordlist.length)];
+                    while (word in game_words) {
+                        word = wordlist[Math.floor(Math.random() * wordlist.length)];
+                    }
+                    game_words.push(word);
+                }
+                $('td').each(function (i) {
+                    $(this).text(game_words[i])
+                })
+
+                apply_draggable();
+
+                $('td').droppable({
+                    accept: ".card",
+                });
+                $('.menu').droppable({
+                    accept: ".card",
+                    drop: function (event, ui) {
+                        if (ui.draggable.hasClass("on-board")) {
+                            ui.draggable.remove();
+                        }
+                    }
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <section class="game">
+            <table>
+                <tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+            </table>
+        </section>
+        <section class="menu">
+            <div class="red_cards">
+                <div draggable="true" class="card draggable red"></div>
+            </div>
+            <div class="blue_cards">
+                <div draggable="true" class="card draggable blue"></div>
+            </div>
+            <div class="neutral_cards">
+                <div draggable="true" class="card draggable neutral"></div>
+            </div>
+            <div class="black_cards">
+                <div draggable="true" class="card draggable black"></div>
+            </div>
+        </section>
+    </body>
+</html>
