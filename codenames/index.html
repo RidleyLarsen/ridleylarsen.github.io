@@ -11,6 +11,9 @@
             * {
                 box-sizing: border-box;
             }
+            html:fullscreen, *:-webkit-full-screen, html:-moz-full-screen {
+                background: url(background.jpg);
+            }
             .red_cards {
                 padding-left: 10px;
             }
@@ -90,6 +93,13 @@
         <script type="text/javascript">
             var game_words = [];
             var $uiobj;
+            document.addEventListener('click', function () {
+                try {
+                    document.getElementsByTagName('html')[0].mozRequestFullScreen();
+                } catch (e) {
+                    document.getElementsByTagName('html')[0].webkitRequestFullScreen();
+                }
+            })
             function apply_draggable () {
                 $('.card.draggable').draggable({
                     revert: "invalid",
