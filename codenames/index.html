@@ -106,7 +106,7 @@
                             var this_offset = $(this).offset()
                             this_center_y = this_offset.top + ($(this).height() / 2);
                             this_center_x = this_offset.left + ($(this).width() / 2);
-                            distance = Math.sqrt(((card_center_y - this_center_y) ** 2) + (card_center_x - this_center_x) ** 2);
+                            distance = Math.sqrt(Math.pow((card_center_y - this_center_y), 2) + Math.pow((card_center_x - this_center_x), 2));
                             y_diff = Math.abs(card_center_y - this_center_y);
                             x_diff = Math.abs(card_center_x - this_center_x);
                             if (distance < min_d) {
