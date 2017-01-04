@@ -76,3 +76,38 @@ ul {
     list-style: none;
     text-align: center;
 }
+ul li {
+    font-family: "Butler Bold";
+    line-height: 1.75em;
+}
+ul li a {
+    font-family: "Butler";
+}
+.favorite-thing {
+    margin: 20px;
+    float: left;
+}
+.favorite-thing span {
+    display: block;
+    margin-top: 10px;
+    font-family: "Butler";
+}
+
+@media only screen and (max-width: 767px) {
+    .col-xs-12 {
+        width: 100%;
+    }
+    .favorite-thing {
+        float: none;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .col-sm-6 {
+        width: 50%;
+        float: left;
+    }
+    .favorite-thing {
+        width: 30%;
+    }
+}
