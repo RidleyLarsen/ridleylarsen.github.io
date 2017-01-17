@@ -79,9 +79,14 @@ ul {
 ul li {
     font-family: "Butler Bold";
     line-height: 1.75em;
+    margin-bottom: 10px;
+}
+ul li span {
+    font-family: "Butler";
 }
 ul li a {
     font-family: "Butler";
+    color: #0F9F6F;
 }
 .favorite-thing {
     margin: 20px;
