@@ -1,4 +1,5 @@
 var habitats = {"any": {}};
+var types = {};
 var pokemon = {};
 function process_pokemon (response) {
   json = response;
