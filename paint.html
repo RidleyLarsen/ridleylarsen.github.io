@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+      canvas {
+        border: 1px solid black;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = "#FF0000";
+      var drawing = false;
+      var ts = 0;
+
+      var lineBuffer = {
+        oldX: 0,
+        oldY: 0,
+        currX: 0,
+        currY: 0,
+        draw: function () {
+          if (this.oldX == 0 && this.oldY == 0) {
+            return;
+          }
+          ctx.beginPath();
+          ctx.moveTo(this.oldX, this.oldY)
+          ctx.lineTo(this.currX, this.currY)
+          ctx.stroke();
+          ctx.closePath();
+        }
+      }
+
+      function draw(e) {
+        ctx.beginPath();
+        ctx.arc(300 * (e.clientX / canvas.offsetWidth), 300 * (e.clientY / canvas.offsetHeight), 5, 0, 2*Math.PI);
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      canvas.addEventListener("mousedown", function (e) {
+        drawing = true;
+        // console.log(e);
+        draw(e);
+        ts = e.timeStamp;
+        lineBuffer.oldX = 300 * (e.clientX / canvas.offsetWidth);
+        lineBuffer.oldY = 300 * (e.clientY / canvas.offsetHeight);
+      });
+
+      canvas.addEventListener("mouseup", function (e) {
+        drawing = false;
+      });
+
+      canvas.addEventListener("mouseleave", function (e) {
+        drawing = false;
+      });
+
+      canvas.addEventListener("mousemove", function (e) {
+        if (drawing) {
+          if (e.timeStamp - ts > 50) {
+            // draw(e);
+            ts = e.timeStamp;
+            lineBuffer.oldX = lineBuffer.currX;
+            lineBuffer.oldY = lineBuffer.currY;
+            lineBuffer.currX = 300 * (e.clientX / canvas.offsetWidth);
+            lineBuffer.currY = 300 * (e.clientY / canvas.offsetHeight);
+            lineBuffer.draw();
+          }
+          // ctx.fillRect(e.clientX - 15, e.clientY - 15, 10, 10);
+        }
+      });
+
+    </script>
+  </body>
+</html>
