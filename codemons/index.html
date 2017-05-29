@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Codenames</title>
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+        <script src="/codemons/static/jquery.min.js"></script>
+        <script src="/codemons/static/jquery-ui.min.js"></script>
+        <script src="/codemons/static/touchpunch.js"></script>
+        <link rel="stylesheet" href="/codemons/static/jquery-ui.css">
+        <link rel="stylesheet" href="/codemons/static/style.css">
+        <script src="/codemons/static/wordlist.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+        <script type="text/javascript" src="/codemons/static/project.js"></script>
+    </head>
+    <body>
+      <div class="ui setup active">
+        <h1>Codenames</h1>
+        <button id="startgame" type="button" name="button">Start Game</button>
+      </div>
+      <div class="ui game">
+        <section class="board">
+            <table>
+                <tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr><tr>
+                    <td></td><td></td><td></td><td></td><td></td>
+                </tr>
+            </table>
+        </section>
+        <section class="menu">
+            <div class="red_cards">
+                <div draggable="true" class="card draggable red"></div>
+            </div>
+            <div class="blue_cards">
+                <div draggable="true" class="card draggable blue"></div>
+            </div>
+            <div class="neutral_cards">
+                <div draggable="true" class="card draggable neutral"></div>
+            </div>
+            <div class="black_cards">
+                <div draggable="true" class="card draggable black"></div>
+            </div>
+        </section>
+      </div>
+    </body>
+</html>

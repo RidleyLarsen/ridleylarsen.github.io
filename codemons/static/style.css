@@ -1,0 +1,123 @@
+* {
+    box-sizing: border-box;
+}
+html {
+    max-height: 100vh;
+    max-width: 100vw;
+    overflow: hidden;
+}
+html:fullscreen, *:-webkit-full-screen, html:-moz-full-screen {
+
+}
+.red_cards {
+    padding-left: 10px;
+}
+.card {
+    display: block;
+    width: calc(18vw - 6px);
+    height: 13vh;
+    border: 1px solid black;
+    cursor: pointer;
+    z-index: 5;
+}
+.ui-draggable-dragging {
+    z-index: 999;
+}
+.card.draggable {
+    position: absolute;
+}
+.card.red {
+    background: rgba(255, 0, 0, 255);
+}
+.card.blue {
+    background: rgba(0, 0, 255, 255);
+}
+.card.black {
+    background: rgba(0, 0, 0, 255);
+}
+.card.neutral {
+    background: #f5deb3;
+}
+.menu {
+    padding-left: calc(5vw + 6px);
+    height: 25vh;
+    width: 100vw;
+}
+.red_cards {
+    padding-left: 0px;
+}
+.blue_cards {
+    padding-left: calc(18vw - 2px);
+}
+.neutral_cards {
+    padding-left: calc(2 * calc(18vw - 2px));
+}
+.black_cards {
+    padding-left: calc(3 * calc(18vw - 2px));
+}
+table {
+    padding-left: 5vw;
+    padding-right: 5vw;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    width: 100vw;
+    height: 75vh;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    text-align: center;
+    font-family: sans-serif;
+    border-spacing: 5px;
+}
+td {
+    display: table-cell;
+    width: 18vw;
+    height: 13vh;
+    border: 1px solid black;
+    background: rgba(0, 0, 0, 0.25);
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: bold;
+    user-select: none;
+}
+body {
+    position: relative;
+    background: rgba(50, 155, 50, 0.9);
+    background-size: cover;
+    margin: 0;
+}
+
+img {
+    max-width: 18vw;
+    height: 13vh;
+}
+
+.ui {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(100vw);
+    animation: 200ms all;
+}
+
+.ui.active {
+    transform: translateX(0);
+}
+
+h1 {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px;
+    font-family: sans-serif;
+}
+
+button {
+    margin: 0 auto;
+    display: block;
+    font-size: 1.7em;
+    background: white;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
