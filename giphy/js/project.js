@@ -11,7 +11,7 @@ tags.on('child_added', function (snapshot) {
 current_tag.on('value', function(childSnapshot, prevChildKey) {
   console.log(childSnapshot, prevChildKey);
   $('title').text('Playing GiphyTV: ' + childSnapshot.val());
-  $('iframe').attr('src', 'http://tv.giphy.com/' + childSnapshot.val());
+  $('iframe').attr('src', 'https://tv.giphy.com/' + childSnapshot.val());
 });
 
 $(function () {
