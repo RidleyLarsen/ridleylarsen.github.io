@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>prompt tool</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="mb-3 mt-3">
+                <h1>Prompt Tool</h1>
+                <form action="">
+                    <div class="mb-3">
+                        <label for="engine">Generator</label>
+                        <select class="form-select" name="engine" id="engine">
+                            <option value="midjourney">Midjourney</option>
+                            <option value="sd">Stable Diffusion</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prompt">Prompt</label>
+                        <textarea class="form-control" name="prompt" id="prompt" cols="30" rows="7"></textarea>
+                    </div>
+                    <label for="template">Size Template</label>
+                    <select class="form-select mb-3" name="template" id="template">
+                        <option selected value="none">None</option>
+                        <option value="phone">phone</option>
+                        <option value="ipad">iPad</option>
+                    </select>
+                    <div class="mb-3">
+                        <label for="extra">Extra Options</label>
+                        <input class="form-control" type="text" id="extra" placeholder="eg. -s 100" />
+                    </div>
+                    <div>
+                        <button id="copy" class="btn btn-info" type="button">Copy</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+
+        function getEngine(engine) {
+            switch (engine) {
+                case "midjourney":
+                    return "/imagine prompt:"
+                case "sd":
+                    return "!dream "
+                default:
+                    return ""
+            }
+        }
+        function getTemplate(option, engine) {
+            if (engine === "midjourney") {
+                switch (option) {
+                    case "phone":
+                        return "--ar 20:9"
+                    case "ipad":
+                        return "--ar 3:2"
+                    default:
+                        return ""
+                }
+            }
+            if (engine === "sd") {
+                switch (option) {
+                    case "phone":
+                        return "-W 704 -H 1408"
+                    case "ipad":
+                        return "-W 1216 -H 768"
+                    default:
+                        return ""
+                }
+            }
+            return ""
+        }
+        function buildFullCommand() {
+            var prompt = document.getElementById("prompt");
+            var extra = document.getElementById("extra");
+            var selectedEngine = document.getElementById("engine").selectedOptions[0].getAttribute('value');
+            var selectedTemplate = document.getElementById("template").selectedOptions[0].getAttribute('value');
+            return `${getEngine(selectedEngine) + prompt.value} ${getTemplate(selectedTemplate, selectedEngine)} ${extra.value}`;
+        }
+
+        copy = document.getElementById("copy");
+        copy.addEventListener("click", function() {
+            navigator.clipboard.writeText(buildFullCommand());
+        });
+
+    </script>
+</body>
+</html>
